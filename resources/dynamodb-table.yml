@@ -1,0 +1,16 @@
+Resources:
+  LearningObjectivesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      # Generate a name based on the stage
+      TableName: ${self:custom.stage}-learningObjectives
+      AttributeDefinitions:
+        - AttributeName: learningObjective
+          AttributeType: S
+      KeySchema:
+        - AttributeName: learningObjective
+          KeyType: HASH
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
